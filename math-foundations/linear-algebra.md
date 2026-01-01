@@ -1,8 +1,8 @@
 # Linear Algebra for Machine Learning
 
-$$
+```math
 \boxed{y = Wx + b}
-$$
+```
 
 Nearly every operation in deep learning is a **linear transformation** followed by a nonlinearity. Matrix multiplication is the fundamental operation—understanding it geometrically and computationally unlocks everything from embeddings to attention.
 
@@ -16,9 +16,9 @@ Prerequisites: Basic algebra (variables, equations). Code: `numpy`.
 
 A **vector** is an ordered list of numbers:
 
-$$
+```math
 \mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}
-$$
+```
 
 In ML, vectors represent:
 - **Features**: A data point with $n$ measurements
@@ -30,14 +30,16 @@ In ML, vectors represent:
 ### Vector Operations
 
 **Addition:** Element-wise
-$$
+
+```math
 \mathbf{u} + \mathbf{v} = \begin{pmatrix} u_1 + v_1 \\ u_2 + v_2 \\ \vdots \end{pmatrix}
-$$
+```
 
 **Scalar multiplication:** Scale each element
-$$
+
+```math
 c\mathbf{v} = \begin{pmatrix} cv_1 \\ cv_2 \\ \vdots \end{pmatrix}
-$$
+```
 
 **What this means:** Adding vectors combines their effects. Scaling a vector makes it longer (or shorter, or flips it). These operations preserve "linearity"—the core property that makes linear algebra tractable.
 
@@ -60,17 +62,17 @@ print(x.shape)    # (3,)
 
 The **dot product** of two vectors:
 
-$$
+```math
 \mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^{n} u_i v_i = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n
-$$
+```
 
 This single number measures **similarity**.
 
 ### Geometric Interpretation
 
-$$
+```math
 \mathbf{u} \cdot \mathbf{v} = |\mathbf{u}| |\mathbf{v}| \cos\theta
-$$
+```
 
 where $\theta$ is the angle between the vectors.
 
@@ -86,9 +88,9 @@ where $\theta$ is the angle between the vectors.
 
 To compare direction regardless of magnitude:
 
-$$
+```math
 \text{cosine similarity} = \frac{\mathbf{u} \cdot \mathbf{v}}{|\mathbf{u}| |\mathbf{v}|}
-$$
+```
 
 This is the dot product of *normalized* vectors (unit length).
 
@@ -115,9 +117,9 @@ print(cosine_similarity(u, v))  # 0.974
 
 A **matrix** is a 2D array of numbers:
 
-$$
+```math
 A = \begin{pmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{pmatrix}
-$$
+```
 
 An $m \times n$ matrix has $m$ rows and $n$ columns.
 
@@ -128,15 +130,15 @@ In ML, matrices represent:
 
 ### Matrix-Vector Multiplication
 
-$$
+```math
 \mathbf{y} = A\mathbf{x}
-$$
+```
 
 Each element of the output is a dot product:
 
-$$
+```math
 y_i = \sum_j A_{ij} x_j = (\text{row } i \text{ of } A) \cdot \mathbf{x}
-$$
+```
 
 **What this means:** Matrix-vector multiplication applies the same operation to get each output element: take a row, dot with the input. Each row of $A$ defines a "detector"—what pattern in the input activates that output?
 
@@ -166,17 +168,17 @@ print(y.shape)  # (3,) - input was 2D, output is 3D
 
 For $A$ ($m \times n$) and $B$ ($n \times p$), the product $C = AB$ is $m \times p$:
 
-$$
+```math
 C_{ij} = \sum_{k=1}^n A_{ik} B_{kj}
-$$
+```
 
 **Key insight:** Matrix multiplication is *composing* linear transformations. If $A$ transforms a vector, and $B$ transforms it further, then $AB$ does both in one step.
 
 ### The Inner Dimensions Must Match
 
-$$
+```math
 \underbrace{A}_{m \times \mathbf{n}} \times \underbrace{B}_{\mathbf{n} \times p} = \underbrace{C}_{m \times p}
-$$
+```
 
 The inner dimensions ($n$) must be equal.
 
@@ -217,9 +219,9 @@ Y = X @ W  # (32, 256) - all 32 samples transformed at once
 
 The **transpose** flips a matrix across its diagonal:
 
-$$
+```math
 (A^T)_{ij} = A_{ji}
-$$
+```
 
 Rows become columns, columns become rows.
 
@@ -243,9 +245,9 @@ print(A.T)  # or np.transpose(A)
 
 The dot product can be written as matrix multiplication:
 
-$$
+```math
 \mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}
-$$
+```
 
 This is why attention uses $QK^T$—each row of $Q$ dots with each row of $K$.
 
@@ -255,17 +257,17 @@ The **norm** measures the "length" or magnitude of a vector.
 
 ### L2 Norm (Euclidean)
 
-$$
+```math
 |\mathbf{x}|_2 = \sqrt{\sum_i x_i^2}
-$$
+```
 
 This is the usual notion of distance/length.
 
 ### L1 Norm (Manhattan)
 
-$$
+```math
 |\mathbf{x}|_1 = \sum_i |x_i|
-$$
+```
 
 Sum of absolute values. Used in regularization (encourages sparsity).
 
@@ -286,9 +288,9 @@ print(np.linalg.norm(x_normalized))  # 1.0
 
 An **eigenvector** of matrix $A$ is a vector that only gets scaled (not rotated) when $A$ is applied:
 
-$$
+```math
 \boxed{A\mathbf{v} = \lambda\mathbf{v}}
-$$
+```
 
 where $\lambda$ is the **eigenvalue**.
 
@@ -298,9 +300,9 @@ where $\lambda$ is the **eigenvalue**.
 
 Eigenvalues satisfy:
 
-$$
+```math
 \det(A - \lambda I) = 0
-$$
+```
 
 For a 2×2 matrix, this gives a quadratic equation.
 
@@ -353,9 +355,9 @@ print(X + b)
 
 The fundamental building block:
 
-$$
+```math
 \mathbf{y} = W\mathbf{x} + \mathbf{b}
-$$
+```
 
 ```python
 def linear(x, W, b):
