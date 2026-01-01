@@ -1,8 +1,8 @@
 # Long Short-Term Memory (LSTM)
 
-$$
+```math
 \boxed{c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t}
-$$
+```
 
 **LSTMs** solve the vanishing gradient problem that plagues basic RNNs. The key insight: instead of transforming state through nonlinearities at each step, let information flow through a **cell state** with minimal modification. Gates learn when to add, remove, or output information from this memory.
 
@@ -15,9 +15,9 @@ Prerequisites: [RNNs](rnns.md), [activation functions](../neural-networks/activa
 ### Vanishing Gradients Revisited
 
 In basic RNNs:
-$$
+```math
 \frac{\partial h_T}{\partial h_1} = \prod_{t=2}^{T} W_h^T \cdot \text{diag}(\tanh'(z_t))
-$$
+```
 
 Each multiplication shrinks gradients because $|\tanh'| \leq 1$ and $|W_h|$ is typically small.
 
@@ -50,34 +50,34 @@ The cell state $c_t$ acts as a conveyor belt—information can flow unchanged, a
 ### Equations
 
 **Forget gate** — decide what to forget:
-$$
+```math
 f_t = \sigma(W_f [h_{t-1}, x_t] + b_f)
-$$
+```
 
 **Input gate** — decide what to add:
-$$
+```math
 i_t = \sigma(W_i [h_{t-1}, x_t] + b_i)
-$$
+```
 
 **Candidate values** — propose new information:
-$$
+```math
 \tilde{c}_t = \tanh(W_c [h_{t-1}, x_t] + b_c)
-$$
+```
 
 **Cell state update** — the key equation:
-$$
+```math
 c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t
-$$
+```
 
 **Output gate** — decide what to output:
-$$
+```math
 o_t = \sigma(W_o [h_{t-1}, x_t] + b_o)
-$$
+```
 
 **Hidden state** — filtered cell state:
-$$
+```math
 h_t = o_t \odot \tanh(c_t)
-$$
+```
 
 ### Implementation
 
@@ -338,18 +338,18 @@ class LSTM:
 
 GRU combines forget and input gates, and merges cell and hidden state:
 
-$$
+```math
 z_t = \sigma(W_z [h_{t-1}, x_t])  \quad \text{(update gate)}
-$$
-$$
+```
+```math
 r_t = \sigma(W_r [h_{t-1}, x_t])  \quad \text{(reset gate)}
-$$
-$$
+```
+```math
 \tilde{h}_t = \tanh(W [r_t \odot h_{t-1}, x_t])  \quad \text{(candidate)}
-$$
-$$
+```
+```math
 h_t = (1 - z_t) \odot h_{t-1} + z_t \odot \tilde{h}_t  \quad \text{(update)}
-$$
+```
 
 ```python
 class GRUCell:

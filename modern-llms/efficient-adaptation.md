@@ -1,8 +1,8 @@
 # Efficient Adaptation
 
-$$
+```math
 \boxed{W' = W + BA, \quad B \in \mathbb{R}^{d \times r}, A \in \mathbb{R}^{r \times k}, \quad r \ll \min(d, k)}
-$$
+```
 
 **Efficient adaptation** modifies pretrained models with minimal parameter changes. Full fine-tuning updates billions of parameters; LoRA updates millions. This makes fine-tuning practical on consumer hardware and enables multiple task-specific adapters sharing one base model.
 
@@ -58,9 +58,9 @@ def measure_weight_change(original, finetuned):
 
 Instead of updating weight matrix $W$ directly, add a low-rank decomposition:
 
-$$
+```math
 W' = W + \Delta W = W + BA
-$$
+```
 
 Where:
 - $W \in \mathbb{R}^{d \times k}$ is frozen

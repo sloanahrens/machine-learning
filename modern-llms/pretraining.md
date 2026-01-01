@@ -1,8 +1,8 @@
 # Pretraining
 
-$$
+```math
 \boxed{L = -\sum_{t} \log p(x_t | x_{<t})}
-$$
+```
 
 **Pretraining** is how large language models learn from the internet. By predicting the next token billions of times across trillions of tokens, models develop remarkably general capabilities—reasoning, coding, following instructions—all from one simple objective. Understanding pretraining explains why LLMs know what they know and why they fail how they fail.
 
@@ -23,9 +23,9 @@ Target: "jumps"
 
 Repeat this across all of the internet's text. That's pretraining.
 
-$$
+```math
 L = -\frac{1}{T} \sum_{t=1}^{T} \log p(x_t | x_1, \ldots, x_{t-1})
-$$
+```
 
 ```python
 import numpy as np
@@ -282,9 +282,9 @@ Epochs by data quality:
 
 Model performance follows predictable power laws:
 
-$$
+```math
 L \approx \left(\frac{N_c}{N}\right)^{\alpha_N} + \left(\frac{D_c}{D}\right)^{\alpha_D} + L_\infty
-$$
+```
 
 Where:
 - $L$ = loss
@@ -296,9 +296,9 @@ Where:
 
 Optimal compute allocation:
 
-$$
+```math
 N \propto C^{0.5}, \quad D \propto C^{0.5}
-$$
+```
 
 **What this means:** Double compute → double parameters AND double data.
 
@@ -352,19 +352,19 @@ These "emergent abilities" may be:
 
 ### Training Cost
 
-$$
+```math
 \text{FLOPs} \approx 6 \times N \times D
-$$
+```
 
 For a 70B model on 2T tokens:
-$$
+```math
 6 \times 70 \times 10^9 \times 2 \times 10^{12} = 8.4 \times 10^{23} \text{ FLOPs}
-$$
+```
 
 On A100 GPUs (~3×10¹⁵ FLOPS):
-$$
+```math
 \frac{8.4 \times 10^{23}}{3 \times 10^{15}} \approx 280 \text{ million GPU-seconds} \approx 3,200 \text{ GPU-years}
-$$
+```
 
 ### Training Infrastructure
 

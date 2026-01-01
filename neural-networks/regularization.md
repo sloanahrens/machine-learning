@@ -1,8 +1,8 @@
 # Regularization
 
-$$
+```math
 \boxed{L_{\text{total}} = L_{\text{data}} + \lambda R(\theta)}
-$$
+```
 
 **Regularization** prevents overfitting by constraining what the model can learn. Neural networks have millions of parameters—far more than needed to memorize training data. Regularization techniques add bias toward simpler solutions, improving generalization to unseen data.
 
@@ -78,23 +78,23 @@ def train_test_gap_demo():
 
 Add penalty on weight magnitude to the loss:
 
-$$
+```math
 L_{\text{total}} = L_{\text{data}} + \frac{\lambda}{2} \|\theta\|^2_2 = L_{\text{data}} + \frac{\lambda}{2} \sum_i \theta_i^2
-$$
+```
 
 ### Effect on Optimization
 
 The gradient becomes:
 
-$$
+```math
 \nabla L_{\text{total}} = \nabla L_{\text{data}} + \lambda \theta
-$$
+```
 
 Update rule:
 
-$$
+```math
 \theta_{t+1} = \theta_t - \eta(\nabla L_{\text{data}} + \lambda \theta_t) = (1 - \eta\lambda)\theta_t - \eta \nabla L_{\text{data}}
-$$
+```
 
 Weights decay toward zero each step (hence the name).
 
@@ -131,9 +131,9 @@ def train_with_weight_decay(model, X, y, learning_rate, weight_decay, epochs):
 
 **Bayesian interpretation:** L2 regularization is equivalent to a Gaussian prior on weights:
 
-$$
+```math
 p(\theta) = \mathcal{N}(0, \sigma^2 I), \quad \lambda = \frac{1}{2\sigma^2}
-$$
+```
 
 **Geometric interpretation:** Constrains weights to lie in a ball of radius $\sqrt{c/\lambda}$.
 
@@ -161,9 +161,9 @@ Larger λ → smaller ball → simpler model
 
 ### Definition
 
-$$
+```math
 L_{\text{total}} = L_{\text{data}} + \lambda \|\theta\|_1 = L_{\text{data}} + \lambda \sum_i |\theta_i|
-$$
+```
 
 ### L1 vs L2
 
@@ -193,9 +193,9 @@ def l2_gradient(theta, lambda_reg):
 
 Combine both:
 
-$$
+```math
 L = L_{\text{data}} + \lambda_1 \|\theta\|_1 + \lambda_2 \|\theta\|_2^2
-$$
+```
 
 Gets sparsity of L1 with the stability of L2.
 
@@ -205,9 +205,9 @@ Gets sparsity of L1 with the stability of L2.
 
 During training, randomly set activations to zero:
 
-$$
+```math
 h' = m \odot h, \quad m_i \sim \text{Bernoulli}(p)
-$$
+```
 
 Then scale by $1/(1-p)$ to maintain expected value.
 
@@ -288,12 +288,12 @@ class MLPWithDropout:
 
 Normalize activations to zero mean and unit variance, then apply learnable scale and shift:
 
-$$
+```math
 \hat{x}_i = \frac{x_i - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}
-$$
-$$
+```
+```math
 y_i = \gamma \hat{x}_i + \beta
-$$
+```
 
 ```python
 class BatchNorm:

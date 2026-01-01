@@ -1,8 +1,8 @@
 # Information Theory
 
-$$
+```math
 \boxed{H(p) = -\sum_{x} p(x) \log p(x)}
-$$
+```
 
 **Information theory** quantifies uncertainty and the cost of communication. In machine learning, it provides the foundation for loss functions, explains why certain architectures work, and gives us tools to measure what models have learned. Cross-entropy loss, KL divergence, and mutual information all come from information theory.
 
@@ -18,9 +18,9 @@ How surprised are you when an event happens? If something is certain (probabilit
 
 **Information content** (or "surprisal") of event $x$:
 
-$$
+```math
 I(x) = -\log p(x)
-$$
+```
 
 The negative log ensures:
 - Certain events ($p = 1$): zero information
@@ -72,9 +72,9 @@ def nats_to_bits(nats):
 
 The **entropy** of a distribution is the expected information content—the average surprise:
 
-$$
+```math
 H(p) = -\sum_{x} p(x) \log p(x) = \mathbb{E}_{x \sim p}[-\log p(x)]
-$$
+```
 
 ```python
 def entropy(p):
@@ -122,9 +122,9 @@ entropy_examples()
 
 For continuous distributions, we use **differential entropy**:
 
-$$
+```math
 h(p) = -\int p(x) \log p(x) \, dx
-$$
+```
 
 Key examples:
 - **Gaussian:** $h(\mathcal{N}(\mu, \sigma^2)) = \frac{1}{2} \log(2\pi e \sigma^2)$
@@ -138,9 +138,9 @@ Differential entropy can be negative (unlike discrete entropy).
 
 **Cross-entropy** measures the average bits needed to encode samples from $p$ using a code optimized for $q$:
 
-$$
+```math
 H(p, q) = -\sum_{x} p(x) \log q(x) = \mathbb{E}_{x \sim p}[-\log q(x)]
-$$
+```
 
 ```python
 def cross_entropy(p, q, epsilon=1e-15):
@@ -165,15 +165,15 @@ In classification, we use cross-entropy loss:
 - True distribution $p$: one-hot (e.g., $[0, 1, 0]$ for class 1)
 - Model prediction $q$: softmax output
 
-$$
+```math
 L = -\sum_{c} y_c \log \hat{y}_c
-$$
+```
 
 For one-hot labels, this simplifies to:
 
-$$
+```math
 L = -\log \hat{y}_{\text{true class}}
-$$
+```
 
 ```python
 def cross_entropy_loss(y_true, y_pred):
@@ -211,9 +211,9 @@ print(f"Cross-entropy loss: {cross_entropy_loss(y_true, y_pred):.4f}")
 
 **Kullback-Leibler divergence** measures how different two distributions are:
 
-$$
+```math
 D_{KL}(p \| q) = \sum_{x} p(x) \log \frac{p(x)}{q(x)} = H(p, q) - H(p)
-$$
+```
 
 ```python
 def kl_divergence(p, q, epsilon=1e-15):
@@ -298,9 +298,9 @@ Since $D_{KL}(p \| q) = H(p, q) - H(p)$:
 
 When optimizing $q$ (model parameters), $H(p)$ is constant, so:
 
-$$
+```math
 \min_q D_{KL}(p \| q) \equiv \min_q H(p, q)
-$$
+```
 
 Minimizing cross-entropy = minimizing KL divergence from true distribution.
 
@@ -310,15 +310,15 @@ Minimizing cross-entropy = minimizing KL divergence from true distribution.
 
 **Mutual information** measures how much knowing one variable tells you about another:
 
-$$
+```math
 I(X; Y) = H(X) + H(Y) - H(X, Y)
-$$
+```
 
 Equivalently:
 
-$$
+```math
 I(X; Y) = D_{KL}(p(x, y) \| p(x)p(y))
-$$
+```
 
 ```python
 def mutual_information(joint_prob):
@@ -377,17 +377,17 @@ I(X; Y) = H(X) - H(X|Y)
 
 **InfoNCE Loss** (contrastive learning):
 
-$$
+```math
 L = -\log \frac{\exp(f(x) \cdot g(x^+))}{\sum_{i} \exp(f(x) \cdot g(x^-_i))}
-$$
+```
 
 This is a lower bound on mutual information between representations.
 
 **Variational Autoencoders:**
 
-$$
+```math
 \text{ELBO} = \mathbb{E}[\log p(x|z)] - D_{KL}(q(z|x) \| p(z))
-$$
+```
 
 The reconstruction term relates to mutual information between $x$ and $z$.
 
@@ -397,15 +397,15 @@ The reconstruction term relates to mutual information between $x$ and $z$.
 
 Maximum likelihood estimation:
 
-$$
+```math
 \hat{\theta} = \arg\max_\theta \prod_{i} p_\theta(x_i)
-$$
+```
 
 Taking log and negating:
 
-$$
+```math
 \hat{\theta} = \arg\min_\theta -\frac{1}{N} \sum_{i} \log p_\theta(x_i)
-$$
+```
 
 This is the cross-entropy between empirical distribution and model.
 
@@ -413,9 +413,9 @@ This is the cross-entropy between empirical distribution and model.
 
 If $\hat{p}$ is the empirical distribution:
 
-$$
+```math
 \min_\theta D_{KL}(\hat{p} \| p_\theta) = \min_\theta H(\hat{p}, p_\theta) - H(\hat{p})
-$$
+```
 
 Since $H(\hat{p})$ is constant, minimizing KL = minimizing cross-entropy = maximum likelihood.
 
@@ -470,9 +470,9 @@ def stable_cross_entropy_with_logits(labels, logits):
 
 Modify one-hot labels to prevent overconfidence:
 
-$$
+```math
 y'_i = (1 - \alpha) y_i + \frac{\alpha}{K}
-$$
+```
 
 ```python
 def label_smoothing(labels, alpha=0.1):

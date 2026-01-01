@@ -1,8 +1,8 @@
 # Recurrent Neural Networks (RNNs)
 
-$$
+```math
 \boxed{h_t = \tanh(W_h h_{t-1} + W_x x_t + b)}
-$$
+```
 
 **Recurrent Neural Networks** process sequences by maintaining hidden state that passes information from one step to the next. Before transformers, RNNs were the foundation of sequence modeling—language models, machine translation, speech recognition. Understanding RNNs illuminates why transformers were designed the way they were.
 
@@ -50,20 +50,20 @@ Recurrent:    x₁ → x₂ → x₃ → ...
 
 Maintain a hidden state $h_t$ that summarizes the sequence so far:
 
-$$
+```math
 h_t = f(h_{t-1}, x_t)
-$$
+```
 
 The same function $f$ (same weights) applies at every time step.
 
 ### Equations
 
-$$
+```math
 h_t = \tanh(W_h h_{t-1} + W_x x_t + b_h)
-$$
-$$
+```
+```math
 y_t = W_y h_t + b_y
-$$
+```
 
 ```python
 import numpy as np
@@ -284,9 +284,9 @@ def truncated_bptt(self, x_seq, targets, bptt_len=20):
 
 Gradients multiply through time:
 
-$$
+```math
 \frac{\partial h_T}{\partial h_1} = \prod_{t=2}^{T} \frac{\partial h_t}{\partial h_{t-1}} = \prod_{t=2}^{T} W_h^T \cdot \text{diag}(1 - h_t^2)
-$$
+```
 
 If $|W_h| < 1$ or $|\tanh'| < 1$: gradients shrink exponentially.
 If $|W_h| > 1$: gradients explode.

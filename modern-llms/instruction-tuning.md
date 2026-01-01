@@ -1,8 +1,8 @@
 # Instruction Tuning
 
-$$
+```math
 \boxed{L = -\sum_{t \in \text{response}} \log p(t | \text{instruction}, \text{input}, t_{<})}
-$$
+```
 
 **Instruction tuning** teaches language models to follow directions. A pretrained model generates plausible text; an instruction-tuned model does what you ask. This is the "supervised fine-tuning" stage that precedes RLHF—it transforms a text predictor into an assistant.
 

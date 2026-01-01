@@ -1,8 +1,8 @@
 # Probability for Machine Learning
 
-$$
+```math
 \boxed{P(A|B) = \frac{P(B|A) P(A)}{P(B)}}
-$$
+```
 
 **Bayes' theorem** is the foundation of probabilistic reasoning. But for deep learning, the key insight is simpler: neural network outputs are probability distributions, and training minimizes the "distance" between predicted and true distributions.
 
@@ -22,27 +22,27 @@ A **probability** $P(A)$ is a number between 0 and 1 representing how likely eve
 ### Rules
 
 **Sum rule:** For mutually exclusive events:
-$$
+```math
 P(A \text{ or } B) = P(A) + P(B)
-$$
+```
 
 **Product rule:** For independent events:
-$$
+```math
 P(A \text{ and } B) = P(A) \cdot P(B)
-$$
+```
 
 **Complement:**
-$$
+```math
 P(\text{not } A) = 1 - P(A)
-$$
+```
 
 ### Conditional Probability
 
 The probability of $A$ **given** $B$:
 
-$$
+```math
 P(A|B) = \frac{P(A \text{ and } B)}{P(B)}
-$$
+```
 
 **What this means:** If we know $B$ happened, how does that change the probability of $A$? Conditioning restricts us to the world where $B$ is true.
 
@@ -52,9 +52,9 @@ $$
 
 For a discrete random variable $X$ with possible values $x_1, x_2, \ldots$:
 
-$$
+```math
 P(X = x_i) = p_i \quad \text{where} \quad \sum_i p_i = 1
-$$
+```
 
 **Example:** Rolling a fair die
 ```python
@@ -71,9 +71,9 @@ print(sum(probs))  # 1.0 - probabilities sum to 1
 
 For continuous variables, we use a **probability density function** (PDF):
 
-$$
+```math
 P(a \leq X \leq b) = \int_a^b p(x) \, dx
-$$
+```
 
 The probability of any *exact* value is 0, but we can compute probability over intervals.
 
@@ -92,9 +92,9 @@ The probability of any *exact* value is 0, but we can compute probability over i
 
 The **expected value** is the probability-weighted average:
 
-$$
+```math
 E[X] = \sum_i x_i P(X = x_i) = \sum_i x_i p_i
-$$
+```
 
 For continuous: $E[X] = \int x \, p(x) \, dx$
 
@@ -104,9 +104,9 @@ For continuous: $E[X] = \int x \, p(x) \, dx$
 
 **Variance** measures spread:
 
-$$
+```math
 \text{Var}(X) = E[(X - E[X])^2] = E[X^2] - (E[X])^2
-$$
+```
 
 **Standard deviation:** $\sigma = \sqrt{\text{Var}(X)}$
 
@@ -141,15 +141,15 @@ We flip a coin 10 times and get 7 heads. What's the most likely value of $p$ (pr
 
 The **likelihood** of the data given $p$:
 
-$$
+```math
 L(p) = p^7 (1-p)^3
-$$
+```
 
 To maximize, take the derivative and set to zero:
 
-$$
+```math
 \frac{dL}{dp} = 7p^6(1-p)^3 - 3p^7(1-p)^2 = 0
-$$
+```
 
 Solving: $p = 7/10 = 0.7$
 
@@ -159,9 +159,9 @@ Solving: $p = 7/10 = 0.7$
 
 In practice, we work with **log-likelihood** (sums instead of products):
 
-$$
+```math
 \log L(p) = 7 \log(p) + 3 \log(1-p)
-$$
+```
 
 Maximizing log-likelihood is equivalent to maximizing likelihood (log is monotonic).
 
@@ -171,9 +171,9 @@ Maximizing log-likelihood is equivalent to maximizing likelihood (log is monoton
 
 The **softmax** function converts arbitrary real numbers into a probability distribution:
 
-$$
+```math
 \text{softmax}(z_i) = \frac{e^{z_i}}{\sum_j e^{z_j}}
-$$
+```
 
 ### Properties
 
@@ -203,9 +203,9 @@ print(probs.sum()) # 1.0
 
 We can control the "sharpness" of softmax with temperature $T$:
 
-$$
+```math
 \text{softmax}(z_i / T)
-$$
+```
 
 - $T < 1$: Sharper (more confident)
 - $T > 1$: Softer (more uniform)
@@ -231,9 +231,9 @@ print(f"T=2.0: {softmax_with_temperature(logits, 2.0)}")  # softer
 
 The **information** (surprise) of an event with probability $p$:
 
-$$
+```math
 I(p) = -\log_2(p) = \log_2(1/p)
-$$
+```
 
 - Rare events (small $p$) carry more information
 - Certain events ($p = 1$) carry zero information
@@ -242,9 +242,9 @@ $$
 
 **Entropy** is the expected information:
 
-$$
+```math
 H(P) = -\sum_i p_i \log p_i = E[-\log p_i]
-$$
+```
 
 (Using natural log gives nats; base 2 gives bits)
 
@@ -282,23 +282,23 @@ print(f"Certain: {entropy(certain):.3f}")  # 0.0
 
 **Cross-entropy** measures how well distribution $Q$ matches true distribution $P$:
 
-$$
+```math
 H(P, Q) = -\sum_i p_i \log q_i = E_{p}[-\log q_i]
-$$
+```
 
 ### As a Loss Function
 
 For classification, $P$ is the one-hot true label, $Q$ is the predicted distribution:
 
-$$
+```math
 L = -\sum_i y_i \log \hat{y}_i
-$$
+```
 
 Since $y$ is one-hot (only one $y_i = 1$), this simplifies to:
 
-$$
+```math
 L = -\log \hat{y}_c
-$$
+```
 
 where $c$ is the correct class.
 
@@ -326,9 +326,9 @@ print(f"Loss: {loss:.4f}")  # low loss - predictions are good
 
 ### Relationship to Entropy
 
-$$
+```math
 H(P, Q) = H(P) + D_{KL}(P || Q)
-$$
+```
 
 where $D_{KL}$ is the KL divergence (below). When $P$ is a one-hot distribution, $H(P) = 0$, so cross-entropy equals KL divergence.
 
@@ -336,9 +336,9 @@ where $D_{KL}$ is the KL divergence (below). When $P$ is a one-hot distribution,
 
 **Kullback-Leibler divergence** measures how different $Q$ is from $P$:
 
-$$
+```math
 D_{KL}(P || Q) = \sum_i p_i \log \frac{p_i}{q_i} = E_P\left[\log \frac{p_i}{q_i}\right]
-$$
+```
 
 ### Properties
 
@@ -366,9 +366,9 @@ print(f"KL(Q||P) = {kl_divergence(q, p):.4f}")  # 0.0404 (different!)
 
 ## Bayes' Theorem
 
-$$
+```math
 P(A|B) = \frac{P(B|A) P(A)}{P(B)}
-$$
+```
 
 ### Interpretation
 
@@ -385,9 +385,9 @@ $$
 
 Given an email contains "free", what's $P(\text{spam} | \text{"free"})$?
 
-$$
+```math
 P(\text{spam} | \text{"free"}) = \frac{0.8 \times 0.3}{0.8 \times 0.3 + 0.1 \times 0.7} = \frac{0.24}{0.31} \approx 0.77
-$$
+```
 
 The word "free" increases our belief from 30% to 77%.
 

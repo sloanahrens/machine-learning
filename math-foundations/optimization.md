@@ -1,8 +1,8 @@
 # Optimization
 
-$$
+```math
 \boxed{\theta_{t+1} = \theta_t - \eta \nabla_\theta L(\theta_t)}
-$$
+```
 
 **Optimization** is how neural networks learn. Given a loss function that measures how wrong our predictions are, we adjust parameters to minimize that loss. The landscape of loss functions in deep learning is complex—high-dimensional, non-convex, full of saddle points—yet gradient descent works remarkably well.
 
@@ -14,9 +14,9 @@ Prerequisites: [calculus](calculus.md) (gradients), [backpropagation](../neural-
 
 We want to find parameters $\theta$ that minimize a loss function $L$:
 
-$$
+```math
 \theta^* = \arg\min_\theta L(\theta)
-$$
+```
 
 In deep learning:
 - $\theta$ = millions to billions of weights and biases
@@ -29,9 +29,9 @@ In deep learning:
 
 The gradient $\nabla L$ points in the direction of steepest increase. To minimize, we go the opposite direction:
 
-$$
+```math
 \theta_{t+1} = \theta_t - \eta \nabla_\theta L(\theta_t)
-$$
+```
 
 where $\eta$ is the **learning rate**.
 
@@ -129,15 +129,15 @@ Modern optimizers (Adam, AdaGrad) adapt the learning rate per-parameter. See [op
 
 Computing the gradient over the full dataset is expensive:
 
-$$
+```math
 \nabla L = \frac{1}{N} \sum_{i=1}^{N} \nabla L_i
-$$
+```
 
 **SGD** uses random samples (mini-batches) instead:
 
-$$
+```math
 \nabla L \approx \frac{1}{B} \sum_{i \in \text{batch}} \nabla L_i
-$$
+```
 
 ### Why It Works
 
@@ -184,9 +184,9 @@ def sgd(f_batch, grad_f_batch, theta_init, X, y,
 
 **Convex:** Bowl-shaped. Any local minimum is the global minimum.
 
-$$
+```math
 f(\lambda x + (1-\lambda)y) \leq \lambda f(x) + (1-\lambda) f(y)
-$$
+```
 
 **Non-convex:** Multiple minima, saddle points, complex terrain.
 
@@ -230,12 +230,12 @@ In $d$ dimensions, a random critical point has probability $(1/2)^d$ of being a 
 
 Momentum accelerates descent by accumulating past gradients:
 
-$$
+```math
 v_t = \beta v_{t-1} + \nabla L(\theta_t)
-$$
-$$
+```
+```math
 \theta_{t+1} = \theta_t - \eta v_t
-$$
+```
 
 ### Intuition
 
@@ -276,9 +276,9 @@ def sgd_momentum(grad_f, theta_init, learning_rate, momentum, n_steps):
 
 Look ahead before computing gradient:
 
-$$
+```math
 v_t = \beta v_{t-1} + \nabla L(\theta_t - \beta v_{t-1})
-$$
+```
 
 **What this means:** Evaluate the gradient at where momentum would take us, not where we are. This provides a "correction" if momentum is taking us too far.
 
@@ -295,17 +295,17 @@ def step_decay(epoch, initial_lr, drop=0.5, epochs_drop=10):
 
 ### Exponential Decay
 
-$$
+```math
 \eta_t = \eta_0 \cdot e^{-kt}
-$$
+```
 
 ### Cosine Annealing
 
 Smooth decay following a cosine curve:
 
-$$
+```math
 \eta_t = \eta_{min} + \frac{1}{2}(\eta_{max} - \eta_{min})(1 + \cos(\frac{t}{T}\pi))
-$$
+```
 
 ### Warmup
 
@@ -349,17 +349,17 @@ def clip_by_norm(gradient, max_norm):
 
 With appropriate learning rate, gradient descent converges to the global minimum:
 
-$$
+```math
 L(\theta_T) - L(\theta^*) \leq O(1/T)
-$$
+```
 
 ### For Non-Convex Functions
 
 We can only guarantee convergence to a **stationary point** (where gradient is zero):
 
-$$
+```math
 \min_{t \leq T} \|\nabla L(\theta_t)\|^2 \leq O(1/\sqrt{T})
-$$
+```
 
 **What this means:** Gradient descent will find *some* point where the loss isn't changing much. Whether it's a good minimum depends on the loss landscape and initialization.
 
@@ -418,9 +418,9 @@ def train_with_monitoring(model, data, epochs):
 
 Gradient descent uses only first derivatives. **Second-order methods** use the Hessian (second derivatives):
 
-$$
+```math
 \theta_{t+1} = \theta_t - H^{-1} \nabla L
-$$
+```
 
 ### Newton's Method
 

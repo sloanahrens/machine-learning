@@ -1,8 +1,8 @@
 # Multilayer Networks
 
-$$
+```math
 \boxed{\mathbf{y} = f_L(f_{L-1}(\cdots f_2(f_1(\mathbf{x})) \cdots))}
-$$
+```
 
 A **multilayer network** (or multilayer perceptron, MLP) stacks multiple layers of neurons. Each layer transforms its input, and the composition of these transformations can approximate any continuous function. This is the foundation of deep learning.
 
@@ -58,17 +58,17 @@ Input Layer      Hidden Layer(s)      Output Layer
 
 ### One Hidden Layer
 
-$$
+```math
 \mathbf{h} = \sigma(W_1 \mathbf{x} + \mathbf{b}_1)
-$$
-$$
+```
+```math
 \mathbf{y} = W_2 \mathbf{h} + \mathbf{b}_2
-$$
+```
 
 Or combined:
-$$
+```math
 \mathbf{y} = W_2 \sigma(W_1 \mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2
-$$
+```
 
 ### Dimensions
 
@@ -129,9 +129,9 @@ print(y.shape)  # (32, 10)
 
 Without activation functions, stacking layers is pointless:
 
-$$
+```math
 W_2(W_1 \mathbf{x} + \mathbf{b}_1) + \mathbf{b}_2 = (W_2 W_1)\mathbf{x} + (W_2 \mathbf{b}_1 + \mathbf{b}_2) = W'\mathbf{x} + \mathbf{b}'
-$$
+```
 
 The composition of linear functions is linear. You'd just have a single-layer network with different weights.
 
@@ -317,9 +317,9 @@ The hidden layer learns **representations**—new features that make the task ea
 ### What Hidden Neurons Learn
 
 Each hidden neuron computes:
-$$
+```math
 h_j = \sigma\left(\sum_i w_{ij} x_i + b_j\right)
-$$
+```
 
 This is a "feature detector"—it activates when the input matches its learned pattern.
 
@@ -343,18 +343,18 @@ This is clearer in CNNs for images, but the principle applies to all deep networ
 
 ### Linear Layer
 
-$$
+```math
 \mathbf{z} = W\mathbf{x} + \mathbf{b}
-$$
+```
 
 - Affine transformation
 - Learned rotation, scaling, translation in high dimensions
 
 ### Activation Layer
 
-$$
+```math
 \mathbf{h} = \sigma(\mathbf{z})
-$$
+```
 
 - Element-wise nonlinearity
 - Creates "folds" in the representation space

@@ -1,8 +1,8 @@
 # BERT
 
-$$
+```math
 \boxed{p(x_{\text{mask}} | x_{\text{context}}) = \text{softmax}(h_{\text{mask}} W^T)}
-$$
+```
 
 **BERT** (Bidirectional Encoder Representations from Transformers) revolutionized NLP by showing that deep bidirectional pretraining produces powerful representations. Unlike GPT's left-to-right generation, BERT sees context from both directions simultaneously, making it ideal for understanding tasks like classification, question answering, and information extraction.
 

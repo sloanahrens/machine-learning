@@ -1,8 +1,8 @@
 # The Perceptron
 
-$$
+```math
 \boxed{y = \sigma(w \cdot x + b)}
-$$
+```
 
 The **perceptron** is a single artificial neuron—the simplest possible neural network. It takes inputs, weights them, adds a bias, and passes the result through an activation function. Understanding the perceptron unlocks everything that comes after.
 
@@ -40,14 +40,14 @@ Components:
 ### The Math
 
 **Step 1: Weighted sum (linear combination)**
-$$
+```math
 z = w_1 x_1 + w_2 x_2 + \cdots + w_n x_n + b = \mathbf{w} \cdot \mathbf{x} + b
-$$
+```
 
 **Step 2: Activation**
-$$
+```math
 y = \sigma(z)
-$$
+```
 
 ### In Code
 
@@ -80,9 +80,9 @@ Without an activation function, a perceptron is just a linear function. The acti
 
 ### Step Function (Original Perceptron)
 
-$$
+```math
 \sigma(z) = \begin{cases} 1 & z > 0 \\ 0 & z \leq 0 \end{cases}
-$$
+```
 
 Binary output: fire or don't fire.
 
@@ -90,9 +90,9 @@ Binary output: fire or don't fire.
 
 ### Sigmoid
 
-$$
+```math
 \sigma(z) = \frac{1}{1 + e^{-z}}
-$$
+```
 
 Smooth output between 0 and 1. Interpretable as probability.
 
@@ -108,9 +108,9 @@ print(sigmoid(10))   # ≈ 1
 
 ### ReLU
 
-$$
+```math
 \sigma(z) = \max(0, z)
-$$
+```
 
 Simple, fast, and works well in practice. See [activation-functions](activation-functions.md) for more.
 
@@ -123,9 +123,9 @@ def relu(z):
 
 With a step function, the perceptron divides input space with a **hyperplane**:
 
-$$
+```math
 \mathbf{w} \cdot \mathbf{x} + b = 0
-$$
+```
 
 Points on one side → class 1, points on the other → class 0.
 
@@ -264,48 +264,48 @@ For differentiable activations (sigmoid, ReLU), we use gradient descent:
 
 ### Forward Pass
 
-$$
+```math
 z = \mathbf{w} \cdot \mathbf{x} + b
-$$
-$$
+```
+```math
 \hat{y} = \sigma(z)
-$$
+```
 
 ### Loss Function
 
 Mean squared error:
-$$
+```math
 L = \frac{1}{2}(\hat{y} - y)^2
-$$
+```
 
 ### Backward Pass (Gradients)
 
 Using the chain rule:
 
-$$
+```math
 \frac{\partial L}{\partial \hat{y}} = \hat{y} - y
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial z} = \frac{\partial L}{\partial \hat{y}} \cdot \sigma'(z)
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial w_i} = \frac{\partial L}{\partial z} \cdot x_i
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial b} = \frac{\partial L}{\partial z}
-$$
+```
 
 ### Update Rule
 
-$$
+```math
 w_i \leftarrow w_i - \eta \frac{\partial L}{\partial w_i}
-$$
-$$
+```
+```math
 b \leftarrow b - \eta \frac{\partial L}{\partial b}
-$$
+```
 
 ### In Code
 

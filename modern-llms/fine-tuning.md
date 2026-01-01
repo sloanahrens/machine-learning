@@ -1,8 +1,8 @@
 # Fine-Tuning
 
-$$
+```math
 \boxed{\theta^* = \arg\min_\theta \sum_{(x,y) \in \mathcal{D}_{\text{task}}} L(f_\theta(x), y)}
-$$
+```
 
 **Fine-tuning** adapts pretrained models to specific tasks. A model trained on general text can become a sentiment classifier, a code generator, or a medical assistant. This transfer learning paradigm—pretrain once, fine-tune many—is why modern LLMs are practical: pretraining is done once at massive cost, fine-tuning is cheap.
 

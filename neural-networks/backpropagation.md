@@ -1,8 +1,8 @@
 # Backpropagation
 
-$$
+```math
 \boxed{\frac{\partial L}{\partial w} = \frac{\partial L}{\partial y} \cdot \frac{\partial y}{\partial z} \cdot \frac{\partial z}{\partial w}}
-$$
+```
 
 **Backpropagation** is the algorithm that makes deep learning possible. It computes gradients efficiently by applying the chain rule backwards through the network. Without it, training networks with millions of parameters would be computationally infeasible.
 
@@ -15,9 +15,9 @@ Prerequisites: [calculus](../math-foundations/calculus.md) (chain rule), [multil
 We want to minimize a loss function $L$ by adjusting weights $\mathbf{w}$.
 
 Gradient descent requires:
-$$
+```math
 \mathbf{w} \leftarrow \mathbf{w} - \eta \frac{\partial L}{\partial \mathbf{w}}
-$$
+```
 
 For a network with millions of parameters, we need efficient gradient computation.
 
@@ -33,31 +33,31 @@ For a network with millions of parameters, we need efficient gradient computatio
 
 For a composition $L = f(g(h(w)))$:
 
-$$
+```math
 \frac{\partial L}{\partial w} = \frac{\partial f}{\partial g} \cdot \frac{\partial g}{\partial h} \cdot \frac{\partial h}{\partial w}
-$$
+```
 
 The key insight: we can compute these intermediate derivatives once and reuse them.
 
 ### Example: Simple Network
 
-$$
+```math
 x \xrightarrow{w} z=wx \xrightarrow{\sigma} a=\sigma(z) \xrightarrow{L} L=(a-y)^2
-$$
+```
 
 Working backward:
 
-$$
+```math
 \frac{\partial L}{\partial a} = 2(a - y)
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial z} = \frac{\partial L}{\partial a} \cdot \frac{\partial a}{\partial z} = 2(a-y) \cdot \sigma'(z)
-$$
+```
 
-$$
+```math
 \frac{\partial L}{\partial w} = \frac{\partial L}{\partial z} \cdot \frac{\partial z}{\partial w} = 2(a-y) \cdot \sigma'(z) \cdot x
-$$
+```
 
 **What this means:** We compute gradients from output to input. Each step reuses the gradient computed in the previous step.
 
@@ -86,40 +86,40 @@ Traverse graph from outputs to inputs, computing gradients.
 ### Forward Pass
 
 For each layer $l = 1, 2, \ldots, L$:
-$$
+```math
 \mathbf{z}^{(l)} = W^{(l)} \mathbf{a}^{(l-1)} + \mathbf{b}^{(l)}
-$$
-$$
+```
+```math
 \mathbf{a}^{(l)} = \sigma^{(l)}(\mathbf{z}^{(l)})
-$$
+```
 
 Store all intermediate values for the backward pass.
 
 ### Compute Loss
 
-$$
+```math
 L = \text{Loss}(\mathbf{a}^{(L)}, \mathbf{y})
-$$
+```
 
 ### Backward Pass
 
 **Step 1:** Gradient at output
-$$
+```math
 \delta^{(L)} = \frac{\partial L}{\partial \mathbf{z}^{(L)}} = \frac{\partial L}{\partial \mathbf{a}^{(L)}} \odot \sigma'^{(L)}(\mathbf{z}^{(L)})
-$$
+```
 
 **Step 2:** Propagate backwards for $l = L-1, L-2, \ldots, 1$:
-$$
+```math
 \delta^{(l)} = (W^{(l+1)})^T \delta^{(l+1)} \odot \sigma'^{(l)}(\mathbf{z}^{(l)})
-$$
+```
 
 **Step 3:** Compute parameter gradients:
-$$
+```math
 \frac{\partial L}{\partial W^{(l)}} = \delta^{(l)} (\mathbf{a}^{(l-1)})^T
-$$
-$$
+```
+```math
 \frac{\partial L}{\partial \mathbf{b}^{(l)}} = \delta^{(l)}
-$$
+```
 
 ### The Pattern
 
@@ -245,9 +245,9 @@ for epoch in range(num_epochs):
 
 The gradient is remarkably simple:
 
-$$
+```math
 \frac{\partial L}{\partial z_i} = p_i - y_i
-$$
+```
 
 where $p$ is the softmax output and $y$ is one-hot target.
 
@@ -257,25 +257,25 @@ where $p$ is the softmax output and $y$ is one-hot target.
 
 For ReLU: $\sigma(z) = \max(0, z)$
 
-$$
+```math
 \frac{\partial a}{\partial z} = \begin{cases} 1 & z > 0 \\ 0 & z \leq 0 \end{cases}
-$$
+```
 
 **What this means:** Gradients flow through for positive inputs, are blocked for negative inputs. This creates "dead" neurons that never update if they always output 0.
 
 ### Weight Gradient
 
-$$
+```math
 \frac{\partial L}{\partial W^{(l)}} = \delta^{(l)} (\mathbf{a}^{(l-1)})^T
-$$
+```
 
 **What this means:** The weight gradient is an outer product of the error signal $\delta$ and the activations $a$. Weights connecting active neurons to high-error outputs get large updates.
 
 ### Bias Gradient
 
-$$
+```math
 \frac{\partial L}{\partial \mathbf{b}^{(l)}} = \delta^{(l)}
-$$
+```
 
 **What this means:** The bias gradient is just the error signal. No dependence on input—the bias is a learned constant.
 
@@ -361,9 +361,9 @@ def check_gradient(net, X, y, param_name, epsilon=1e-5, tolerance=1e-5):
 
 In deep networks, gradients can shrink exponentially:
 
-$$
+```math
 \frac{\partial L}{\partial W^{(1)}} = \frac{\partial L}{\partial a^{(L)}} \cdot \prod_{l=2}^{L} W^{(l)} \cdot \sigma'(\cdot)
-$$
+```
 
 If each $W \cdot \sigma'$ has eigenvalues < 1, the product shrinks.
 
@@ -396,9 +396,9 @@ Gradients can also grow exponentially.
 
 Neurons that always output 0 never get gradients:
 
-$$
+```math
 \text{ReLU}'(z) = 0 \quad \text{if } z \leq 0
-$$
+```
 
 **Solutions:**
 - Leaky ReLU: small slope for negative inputs
@@ -442,9 +442,9 @@ x₁ → h₁ → x₂ → h₂ → x₃ → h₃ → L
 
 Gradients accumulate across time steps:
 
-$$
+```math
 \frac{\partial L}{\partial W} = \sum_t \frac{\partial L}{\partial W_t}
-$$
+```
 
 This is just backprop on the unrolled graph, but gradients must flow through many steps (vanishing/exploding gradient problem is severe).
 

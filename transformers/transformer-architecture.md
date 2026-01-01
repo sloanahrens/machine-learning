@@ -1,8 +1,8 @@
 # The Transformer Architecture
 
-$$
+```math
 \boxed{\text{Transformer} = \text{Embedding} + \text{Positional Encoding} + N \times \text{Block} + \text{Output Head}}
-$$
+```
 
 The **transformer** is an architecture that processes sequences using attention instead of recurrence. It consists of stacked blocks, each containing self-attention followed by a feedforward network. This simple, parallelizable design has become the foundation of modern NLP.
 
@@ -190,9 +190,9 @@ In cross-attention:
 - **Queries** come from the decoder (what we're generating)
 - **Keys and Values** come from the encoder (what we're reading)
 
-$$
+```math
 \text{CrossAttention}(Q_{\text{dec}}, K_{\text{enc}}, V_{\text{enc}})
-$$
+```
 
 **What this means:** Each decoder position can look at all encoder positions. This is how translation works—when generating "bonjour", the decoder attends to "hello" in the encoder's representation.
 
@@ -200,9 +200,9 @@ $$
 
 Transformers use **layer normalization**, not batch normalization:
 
-$$
+```math
 \text{LayerNorm}(x) = \gamma \cdot \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} + \beta
-$$
+```
 
 where $\mu$ and $\sigma^2$ are computed over the feature dimension for each position independently.
 
@@ -236,9 +236,9 @@ Pre-norm is more stable for deep networks and doesn't require careful learning r
 
 Each position goes through the same feedforward network independently:
 
-$$
+```math
 \text{FFN}(x) = W_2 \cdot \text{GELU}(W_1 x + b_1) + b_2
-$$
+```
 
 ### Dimensions
 
@@ -263,18 +263,18 @@ def feedforward(x, W1, b1, W2, b2):
 
 Transformers add position information to embeddings:
 
-$$
+```math
 \text{input} = \text{Embedding}(x) + \text{PositionalEncoding}(\text{position})
-$$
+```
 
 ### Sinusoidal (Original)
 
-$$
+```math
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right)
-$$
-$$
+```
+```math
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d}}\right)
-$$
+```
 
 ```python
 def sinusoidal_positional_encoding(max_len, d_model):
@@ -437,9 +437,9 @@ print(f"GPT-2 Small: {params / 1e6:.1f}M parameters")  # ~117M
 
 Every sub-layer has a residual connection:
 
-$$
+```math
 \text{output} = x + \text{sublayer}(x)
-$$
+```
 
 ### Why Residuals?
 
@@ -490,9 +490,9 @@ Typical values: p = 0.1 for base models, p = 0.3 for large models.
 
 For language modeling, cross-entropy loss over vocabulary:
 
-$$
+```math
 L = -\frac{1}{T}\sum_{t=1}^{T} \log P(x_t | x_{<t})
-$$
+```
 
 ```python
 def cross_entropy_loss(logits, targets):

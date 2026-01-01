@@ -1,8 +1,8 @@
 # Optimizers
 
-$$
+```math
 \boxed{\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t}
-$$
+```
 
 **Optimizers** are the algorithms that update model parameters to minimize loss. While basic gradient descent works, modern optimizers use adaptive learning rates, momentum, and other techniques to train faster and more reliably. Adam is the default choice for most deep learning, but understanding the alternatives helps you tune training.
 
@@ -52,12 +52,12 @@ class Optimizer:
 
 Momentum accumulates a velocity that smooths out gradient noise:
 
-$$
+```math
 v_t = \beta v_{t-1} + g_t
-$$
-$$
+```
+```math
 \theta_t = \theta_{t-1} - \eta v_t
-$$
+```
 
 ```python
 class SGD:
@@ -77,9 +77,9 @@ class SGD:
 
 Look ahead before computing gradient:
 
-$$
+```math
 v_t = \beta v_{t-1} + g(\theta_{t-1} - \eta \beta v_{t-1})
-$$
+```
 
 ```python
 class SGDNesterov:
@@ -115,12 +115,12 @@ Different parameters may need different learning rates:
 
 Accumulate squared gradients and scale by their inverse:
 
-$$
+```math
 G_t = G_{t-1} + g_t^2
-$$
-$$
+```
+```math
 \theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{G_t} + \epsilon} g_t
-$$
+```
 
 ```python
 class Adagrad:
@@ -148,12 +148,12 @@ $G_t$ only grows, so learning rate continually shrinks. Training can stall befor
 
 Use exponential moving average instead of sum:
 
-$$
+```math
 v_t = \beta v_{t-1} + (1 - \beta) g_t^2
-$$
-$$
+```
+```math
 \theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{v_t} + \epsilon} g_t
-$$
+```
 
 ```python
 class RMSprop:
@@ -178,24 +178,24 @@ class RMSprop:
 
 Combine momentum (first moment) with adaptive rates (second moment):
 
-$$
+```math
 m_t = \beta_1 m_{t-1} + (1 - \beta_1) g_t
-$$
-$$
+```
+```math
 v_t = \beta_2 v_{t-1} + (1 - \beta_2) g_t^2
-$$
+```
 
 Bias correction (crucial for early training):
 
-$$
+```math
 \hat{m}_t = \frac{m_t}{1 - \beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1 - \beta_2^t}
-$$
+```
 
 Update:
 
-$$
+```math
 \theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
-$$
+```
 
 ```python
 class Adam:
@@ -228,9 +228,9 @@ class Adam:
 
 At $t=1$ with $\beta_2=0.999$:
 
-$$
+```math
 v_1 = 0.001 \cdot g_1^2
-$$
+```
 
 This severely underestimates the true variance. Dividing by $(1 - 0.999^1) = 0.001$ corrects this.
 
@@ -267,9 +267,9 @@ Standard Adam applies weight decay incorrectly. L2 regularization adds $\lambda\
 
 **Decoupled weight decay** applies it directly:
 
-$$
+```math
 \theta_t = \theta_{t-1} - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t - \eta \lambda \theta_{t-1}
-$$
+```
 
 ```python
 class AdamW:

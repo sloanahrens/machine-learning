@@ -1,8 +1,8 @@
 # Distributed Training
 
-$$
+```math
 \boxed{\text{Training time} \propto \frac{\text{Dataset} \times \text{Model size}}{\text{Parallelism} \times \text{Hardware efficiency}}}
-$$
+```
 
 **Distributed training** scales beyond single GPUs. A 70B parameter model doesn't fit on one GPU. Training on trillions of tokens would take years on one machine. Distributed training combines data parallelism (split data), model parallelism (split model), and pipeline parallelism (split layers) to train massive models in practical time.
 

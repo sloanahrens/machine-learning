@@ -1,8 +1,8 @@
 # Self-Attention
 
-$$
+```math
 \boxed{\text{SelfAttention}(X) = \text{softmax}\left(\frac{(XW_Q)(XW_K)^T}{\sqrt{d_k}}\right)(XW_V)}
-$$
+```
 
 **Self-attention** applies attention within a single sequence—each position attends to all positions in the same sequence, including itself. This is the core mechanism that lets transformers model relationships between any pair of tokens, regardless of distance.
 
@@ -16,9 +16,9 @@ In general attention, queries come from one sequence and keys/values from anothe
 
 In **self-attention**, queries, keys, and values all come from the *same* sequence:
 
-$$
+```math
 Q = XW_Q, \quad K = XW_K, \quad V = XW_V
-$$
+```
 
 where $X \in \mathbb{R}^{n \times d}$ is the input sequence (n tokens, d-dimensional embeddings).
 
@@ -60,33 +60,33 @@ Given input $X \in \mathbb{R}^{n \times d}$ (n tokens, d dimensions):
 
 **Step 1: Project to Q, K, V**
 
-$$
+```math
 Q = XW_Q \in \mathbb{R}^{n \times d_k}
-$$
-$$
+```
+```math
 K = XW_K \in \mathbb{R}^{n \times d_k}
-$$
-$$
+```
+```math
 V = XW_V \in \mathbb{R}^{n \times d_v}
-$$
+```
 
 **Step 2: Compute attention scores**
 
-$$
+```math
 \text{scores} = \frac{QK^T}{\sqrt{d_k}} \in \mathbb{R}^{n \times n}
-$$
+```
 
 **Step 3: Apply softmax**
 
-$$
+```math
 \text{weights} = \text{softmax}(\text{scores}) \in \mathbb{R}^{n \times n}
-$$
+```
 
 **Step 4: Compute output**
 
-$$
+```math
 \text{output} = \text{weights} \cdot V \in \mathbb{R}^{n \times d_v}
-$$
+```
 
 ### Dimensions Visualized
 
@@ -244,15 +244,15 @@ print(weights[:5, :5].round(2))  # First 5x5 block
 
 A single attention head can only focus on one type of relationship. **Multi-head attention** runs multiple attention heads in parallel, each learning different patterns:
 
-$$
+```math
 \text{MultiHead}(X) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W_O
-$$
+```
 
 where each head is:
 
-$$
+```math
 \text{head}_i = \text{Attention}(XW_Q^i, XW_K^i, XW_V^i)
-$$
+```
 
 ### Why Multiple Heads?
 
@@ -356,9 +356,9 @@ Self-attention is **permutation equivariant**—it treats all positions equally.
 ### The Problem
 
 Self-attention computes:
-$$
+```math
 \alpha_{ij} = \text{softmax}(q_i \cdot k_j)
-$$
+```
 
 This depends only on *content* ($q_i$, $k_j$), not *position* ($i$, $j$). Shuffling the sequence shuffles the output in the same way.
 
@@ -367,17 +367,17 @@ This depends only on *content* ($q_i$, $k_j$), not *position* ($i$, $j$). Shuffl
 ### Solutions
 
 1. **Sinusoidal positional encoding** (original Transformer):
-   $$
+```math
    PE_{(pos, 2i)} = \sin(pos / 10000^{2i/d})
-   $$
-   $$
+```
+```math
    PE_{(pos, 2i+1)} = \cos(pos / 10000^{2i/d})
-   $$
+```
 
 2. **Learned positional embeddings** (BERT, GPT):
-   $$
+```math
    X' = X + P
-   $$
+```
    where $P \in \mathbb{R}^{n_{max} \times d}$ is learned.
 
 3. **Relative positional encoding** (Transformer-XL, T5):

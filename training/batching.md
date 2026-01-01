@@ -1,8 +1,8 @@
 # Batching
 
-$$
+```math
 \boxed{\nabla_\theta L \approx \frac{1}{B} \sum_{i=1}^{B} \nabla_\theta L_i}
-$$
+```
 
 **Batching** processes multiple examples simultaneously. Instead of updating weights after each example (slow, noisy) or after the entire dataset (expensive, infrequent), mini-batch gradient descent hits a sweet spot: efficient GPU utilization, reasonable gradient estimates, and practical memory use.
 

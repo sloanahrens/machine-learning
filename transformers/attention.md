@@ -1,8 +1,8 @@
 # Attention
 
-$$
+```math
 \boxed{\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V}
-$$
+```
 
 The **attention mechanism** lets a model dynamically focus on relevant parts of its input. It's the core innovation that makes transformers possible, replacing the sequential processing of RNNs with parallel, content-based routing.
 
@@ -27,9 +27,9 @@ For a sequence of length $n$ with hidden dimension $d$:
 
 Attention computes a weighted combination of all inputs, with weights based on relevance:
 
-$$
+```math
 \text{output}_i = \sum_j \alpha_{ij} \cdot \text{value}_j
-$$
+```
 
 where $\alpha_{ij}$ measures "how much should position $i$ attend to position $j$?"
 
@@ -39,9 +39,9 @@ where $\alpha_{ij}$ measures "how much should position $i$ attend to position $j
 
 Given a **query** $q$ and **keys** $k_1, \ldots, k_n$:
 
-$$
+```math
 \alpha_j = \frac{\exp(q \cdot k_j / \sqrt{d_k})}{\sum_m \exp(q \cdot k_m / \sqrt{d_k})}
-$$
+```
 
 ### Breaking This Down
 
@@ -68,9 +68,9 @@ So as $d$ grows, dot products have larger magnitude, pushing softmax toward one-
 
 The full attention mechanism uses three different projections:
 
-$$
+```math
 Q = XW_Q, \quad K = XW_K, \quad V = XW_V
-$$
+```
 
 where $X$ is the input and $W_Q, W_K, W_V$ are learned weight matrices.
 

@@ -1,8 +1,8 @@
 # Sequence-to-Sequence
 
-$$
+```math
 \boxed{p(y_1, \ldots, y_T | x_1, \ldots, x_S) = \prod_{t=1}^{T} p(y_t | y_{<t}, c)}
-$$
+```
 
 **Sequence-to-sequence** (seq2seq) models transform one sequence into another. An encoder reads the input; a decoder generates the output. This architecture enabled breakthroughs in machine translation (2014) and introduced concepts—encoder-decoder structure, attention mechanisms—that evolved into modern transformers.
 
@@ -218,19 +218,19 @@ Encoder states:  h₁   h₂   h₃   h₄   h₅
 ### Attention Equations
 
 **Attention scores** — how relevant is encoder state $j$ for decoder step $t$:
-$$
+```math
 e_{t,j} = \text{score}(s_{t-1}, h_j)
-$$
+```
 
 **Attention weights** — normalized scores:
-$$
+```math
 \alpha_{t,j} = \frac{\exp(e_{t,j})}{\sum_k \exp(e_{t,k})}
-$$
+```
 
 **Context vector** — weighted sum of encoder states:
-$$
+```math
 c_t = \sum_j \alpha_{t,j} h_j
-$$
+```
 
 ### Scoring Functions
 

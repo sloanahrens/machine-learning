@@ -1,8 +1,8 @@
 # Loss Functions
 
-$$
+```math
 \boxed{L = -\sum_{c} y_c \log \hat{y}_c}
-$$
+```
 
 **Loss functions** measure how wrong our predictions are. The choice of loss function defines what "good" means for a model—it encodes our objective and shapes the entire optimization landscape. Different tasks require different losses, and understanding why helps you choose (or design) the right one.
 
@@ -47,9 +47,9 @@ def training_loop(model, loss_fn, data, learning_rate):
 
 ### Definition
 
-$$
+```math
 L = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2
-$$
+```
 
 ```python
 class MSELoss:
@@ -118,9 +118,9 @@ def linear_regression_demo():
 
 ### Definition
 
-$$
+```math
 L = \frac{1}{N} \sum_{i=1}^{N} |y_i - \hat{y}_i|
-$$
+```
 
 ```python
 class MAELoss:
@@ -162,12 +162,12 @@ def compare_mse_mae():
 
 Combines MSE (small errors) and MAE (large errors):
 
-$$
+```math
 L_\delta(a) = \begin{cases}
 \frac{1}{2}a^2 & \text{if } |a| \leq \delta \\
 \delta(|a| - \frac{1}{2}\delta) & \text{otherwise}
 \end{cases}
-$$
+```
 
 ```python
 class HuberLoss:
@@ -199,9 +199,9 @@ class HuberLoss:
 
 For binary classification with sigmoid output:
 
-$$
+```math
 L = -\frac{1}{N} \sum_{i=1}^{N} [y_i \log \hat{y}_i + (1 - y_i) \log(1 - \hat{y}_i)]
-$$
+```
 
 ```python
 class BinaryCrossEntropyLoss:
@@ -232,15 +232,15 @@ class BinaryCrossEntropyLoss:
 
 For multi-class classification with softmax output:
 
-$$
+```math
 L = -\frac{1}{N} \sum_{i=1}^{N} \sum_{c=1}^{C} y_{i,c} \log \hat{y}_{i,c}
-$$
+```
 
 For one-hot labels, simplifies to:
 
-$$
+```math
 L = -\frac{1}{N} \sum_{i=1}^{N} \log \hat{y}_{i, c_i}
-$$
+```
 
 where $c_i$ is the true class for sample $i$.
 
@@ -329,9 +329,9 @@ class LabelSmoothingCrossEntropy:
 
 For class imbalance—down-weight easy examples:
 
-$$
+```math
 L = -\alpha_t (1 - p_t)^\gamma \log(p_t)
-$$
+```
 
 ```python
 class FocalLoss:
@@ -361,9 +361,9 @@ class FocalLoss:
 
 For learning embeddings:
 
-$$
+```math
 L = (1-y) \frac{1}{2} d^2 + y \frac{1}{2} \max(0, m - d)^2
-$$
+```
 
 ```python
 class ContrastiveLoss:
@@ -390,9 +390,9 @@ class ContrastiveLoss:
 
 Pull anchor-positive pairs together, push anchor-negative apart:
 
-$$
+```math
 L = \max(0, d(a, p) - d(a, n) + m)
-$$
+```
 
 ```python
 class TripletLoss:
@@ -415,9 +415,9 @@ class TripletLoss:
 
 Contrastive learning with multiple negatives:
 
-$$
+```math
 L = -\log \frac{\exp(q \cdot k_+ / \tau)}{\sum_{i} \exp(q \cdot k_i / \tau)}
-$$
+```
 
 ```python
 class InfoNCELoss:
@@ -445,9 +445,9 @@ class InfoNCELoss:
 
 ### Negative Log-Likelihood for Language Models
 
-$$
+```math
 L = -\frac{1}{T} \sum_{t=1}^{T} \log p(x_t | x_{<t})
-$$
+```
 
 ```python
 def language_model_loss(logits, targets):
@@ -484,9 +484,9 @@ def softmax(x):
 
 Perplexity is the exponentiated average cross-entropy:
 
-$$
+```math
 \text{PPL} = \exp\left(-\frac{1}{T} \sum_t \log p(x_t | x_{<t})\right)
-$$
+```
 
 ```python
 def perplexity(cross_entropy_loss):

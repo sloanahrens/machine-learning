@@ -1,8 +1,8 @@
 # GPT: Generative Pre-trained Transformer
 
-$$
+```math
 \boxed{P(x_1, x_2, \ldots, x_n) = \prod_{i=1}^{n} P(x_i | x_1, \ldots, x_{i-1})}
-$$
+```
 
 **GPT** (Generative Pre-trained Transformer) is a decoder-only transformer trained to predict the next token. This simple objective—predict what comes next—turns out to be extraordinarily powerful when scaled up. GPT-style models form the foundation of modern large language models.
 
@@ -14,9 +14,9 @@ Prerequisites: [transformer-architecture](transformer-architecture.md), [probabi
 
 GPT has one job: given a sequence of tokens, predict the next one.
 
-$$
+```math
 P(x_t | x_1, \ldots, x_{t-1})
-$$
+```
 
 Train on vast amounts of text. Scale up. Remarkable capabilities emerge.
 
@@ -28,9 +28,9 @@ Train on vast amounts of text. Scale up. Remarkable capabilities emerge.
 
 Any sequence probability can be factored autoregressively:
 
-$$
+```math
 P(x_1, x_2, \ldots, x_n) = P(x_1) \cdot P(x_2|x_1) \cdot P(x_3|x_1,x_2) \cdots P(x_n|x_1,\ldots,x_{n-1})
-$$
+```
 
 GPT models each conditional distribution with a transformer.
 
@@ -239,9 +239,9 @@ class GPT:
 
 GPT's power comes from scale. Empirically:
 
-$$
+```math
 L(N, D) \approx \left(\frac{N_c}{N}\right)^{\alpha_N} + \left(\frac{D_c}{D}\right)^{\alpha_D}
-$$
+```
 
 where $L$ is loss, $N$ is parameters, $D$ is data, and $\alpha \approx 0.076$.
 
@@ -337,9 +337,9 @@ Controls randomness:
 | 1.0 | Standard sampling |
 | 1.5+ | Creative but potentially incoherent |
 
-$$
+```math
 P(x_i) = \frac{\exp(z_i / T)}{\sum_j \exp(z_j / T)}
-$$
+```
 
 As $T \to 0$, distribution becomes one-hot (argmax).
 As $T \to \infty$, distribution becomes uniform.

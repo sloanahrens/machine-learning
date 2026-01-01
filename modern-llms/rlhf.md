@@ -1,8 +1,8 @@
 # Reinforcement Learning from Human Feedback (RLHF)
 
-$$
+```math
 \boxed{\max_\pi \mathbb{E}_{x \sim D, y \sim \pi}[R(x, y)] - \beta \cdot D_{KL}(\pi \| \pi_{\text{ref}})}
-$$
+```
 
 **RLHF** trains language models to maximize human preferences. Supervised fine-tuning teaches models *what* to say; RLHF teaches them *how* humans want them to say it. This is how models learn to be helpful, harmless, and honest—qualities that can't be captured by next-token prediction alone.
 
@@ -140,9 +140,9 @@ def collect_comparisons(model, prompts):
 
 Convert rankings to reward scores using the Bradley-Terry model:
 
-$$
+```math
 p(\text{response } i \succ \text{response } j) = \sigma(r_i - r_j)
-$$
+```
 
 ```python
 import numpy as np
@@ -222,9 +222,9 @@ def sigmoid(x):
 
 Maximize reward while staying close to the SFT model:
 
-$$
+```math
 \max_\pi \mathbb{E}_{x \sim D, y \sim \pi(\cdot|x)}[R(x, y) - \beta \cdot \log\frac{\pi(y|x)}{\pi_{\text{ref}}(y|x)}]
-$$
+```
 
 **Why the KL penalty?**
 - Prevents reward hacking (exploiting RM weaknesses)
@@ -375,9 +375,9 @@ def iterative_rlhf():
 
 Skip the reward model—train directly on preferences:
 
-$$
+```math
 L_{DPO} = -\log \sigma\left(\beta \log\frac{\pi(y_w|x)}{\pi_{\text{ref}}(y_w|x)} - \beta \log\frac{\pi(y_l|x)}{\pi_{\text{ref}}(y_l|x)}\right)
-$$
+```
 
 ```python
 def dpo_loss(policy, ref_model, prompt, chosen, rejected, beta=0.1):

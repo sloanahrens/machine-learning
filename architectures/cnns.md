@@ -1,8 +1,8 @@
 # Convolutional Neural Networks
 
-$$
+```math
 \boxed{(f * g)[i] = \sum_{k} f[k] \cdot g[i - k]}
-$$
+```
 
 **Convolutional neural networks** exploit spatial structure in data. Instead of learning separate weights for every pixel, CNNs learn small filters that slide across the input, detecting patterns regardless of where they appear. This translation invariance made CNNs dominant in computer vision and influenced modern architectures.
 
@@ -16,9 +16,9 @@ Prerequisites: [backpropagation](../neural-networks/backpropagation.md), [activa
 
 A 224×224 RGB image has 150,528 input features. With a 1000-neuron hidden layer:
 
-$$
+```math
 \text{Parameters} = 150,528 \times 1000 = 150\text{M parameters (first layer alone!)}
-$$
+```
 
 This is wasteful and ignores spatial structure:
 - Adjacent pixels are related

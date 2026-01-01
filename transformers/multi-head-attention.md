@@ -1,8 +1,8 @@
 # Multi-Head Attention
 
-$$
+```math
 \boxed{\text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O}
-$$
+```
 
 **Multi-head attention** runs multiple attention operations in parallel, each focusing on different aspects of the input. One head might capture syntactic relationships, another semantic similarities, another positional patterns. This parallel processing is central to transformer power and efficiency.
 
@@ -56,14 +56,14 @@ Query: "The cat sat on the mat"
 ### The Equations
 
 For each head $i$:
-$$
+```math
 \text{head}_i = \text{Attention}(QW_i^Q, KW_i^K, VW_i^V)
-$$
+```
 
 Combine heads:
-$$
+```math
 \text{MultiHead}(Q, K, V) = \text{Concat}(\text{head}_1, \ldots, \text{head}_h)W^O
-$$
+```
 
 Where:
 - $W_i^Q \in \mathbb{R}^{d \times d_k}$ projects to query space

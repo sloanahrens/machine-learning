@@ -1,8 +1,8 @@
 # Inference Optimization
 
-$$
+```math
 \boxed{\text{Tokens/sec} = \frac{\text{Batch size} \times \text{Sequence length}}{\text{Latency}} \propto \frac{\text{Memory bandwidth}}{\text{Model size}}}
-$$
+```
 
 **Inference optimization** makes LLMs fast and cheap to deploy. A 70B model generating one token at a time is slow and expensive. With KV caching, batching, quantization, and speculative decoding, the same model can serve thousands of requests efficiently.
 
