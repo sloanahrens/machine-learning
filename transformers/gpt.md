@@ -599,6 +599,6 @@ Longer context = more memory and compute (quadratic in self-attention).
 
 The recipe is: (1) transformer architecture, (2) autoregressive training, (3) massive data, (4) massive compute. The result is a model that, while "just" predicting text, exhibits remarkable capabilities that continue to surprise researchers.
 
-**Next:** [Modern LLM Techniques](../modern-llm/fine-tuning.md) covers RLHF, instruction tuning, and other techniques that transform base models into assistants.
+**Next:** [Pretraining](../modern-llms/pretraining.md) covers how models like GPT are trained at scale on internet text.
 
 **Notebook:** [10-gpt-from-scratch.ipynb](../notebooks/10-gpt-from-scratch.ipynb) trains a character-level GPT on Shakespeare.

@@ -60,22 +60,12 @@ Understanding modern LLMs from first principles. ~30 interlinked documents cover
 
 ## Notebooks
 
-Runnable implementations progressing from NumPy to PyTorch:
+Runnable implementations in NumPy:
 
-| Notebook | Focus | Framework |
-|----------|-------|-----------|
-| [01-numpy-neural-net](notebooks/01-numpy-neural-net.ipynb) | 2-layer net from scratch | NumPy |
-| [02-backprop-from-scratch](notebooks/02-backprop-from-scratch.ipynb) | Manual gradient computation | NumPy |
-| [03-activations-visualized](notebooks/03-activations-visualized.ipynb) | Plot activations, dead ReLU | NumPy |
-| [04-optimization-landscape](notebooks/04-optimization-landscape.ipynb) | Visualize SGD, Adam | NumPy |
-| [05-rnn-from-scratch](notebooks/05-rnn-from-scratch.ipynb) | Character-level RNN | NumPy |
-| [06-lstm-from-scratch](notebooks/06-lstm-from-scratch.ipynb) | LSTM cell implementation | NumPy |
-| [07-attention-from-scratch](notebooks/07-attention-from-scratch.ipynb) | Dot-product attention | NumPy |
-| [08-minimal-transformer](notebooks/08-minimal-transformer.ipynb) | Single-layer transformer | PyTorch |
-| [09-minimal-gpt](notebooks/09-minimal-gpt.ipynb) | Train tiny GPT on Shakespeare | PyTorch |
-| [10-fine-tuning-basics](notebooks/10-fine-tuning-basics.ipynb) | Fine-tune on classification | PyTorch |
-| [11-lora-from-scratch](notebooks/11-lora-from-scratch.ipynb) | Implement LoRA | PyTorch |
-| [12-kv-cache-demo](notebooks/12-kv-cache-demo.ipynb) | KV caching speedup | PyTorch |
+| Notebook | Focus |
+|----------|-------|
+| [01-numpy-neural-net](notebooks/01-numpy-neural-net.ipynb) | 2-layer net from scratch |
+| [02-backprop-from-scratch](notebooks/02-backprop-from-scratch.ipynb) | Manual gradient computation |
 
 ## Folder Structure
 
