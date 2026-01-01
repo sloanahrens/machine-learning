@@ -60,12 +60,22 @@ Understanding modern LLMs from first principles. ~30 interlinked documents cover
 
 ## Notebooks
 
-Runnable implementations in NumPy:
+Runnable implementations progressing from NumPy to PyTorch:
 
-| Notebook | Focus |
-|----------|-------|
-| [01-numpy-neural-net](notebooks/01-numpy-neural-net.ipynb) | 2-layer net from scratch |
-| [02-backprop-from-scratch](notebooks/02-backprop-from-scratch.ipynb) | Manual gradient computation |
+| Notebook | Focus | Status |
+|----------|-------|--------|
+| [01-numpy-neural-net](notebooks/01-numpy-neural-net.ipynb) | 2-layer net from scratch | ✅ |
+| [02-backprop-from-scratch](notebooks/02-backprop-from-scratch.ipynb) | Manual gradient computation | ✅ |
+| 03-activations-visualized | Plot activations, dead ReLU | 📋 |
+| 04-optimization-landscape | Visualize SGD, Adam | 📋 |
+| 05-rnn-from-scratch | Character-level RNN | 📋 |
+| 06-lstm-from-scratch | LSTM cell implementation | 📋 |
+| 07-attention-from-scratch | Dot-product attention | 📋 |
+| 08-minimal-transformer | Single-layer transformer | 📋 |
+| 09-minimal-gpt | Train tiny GPT on Shakespeare | 📋 |
+| 10-fine-tuning-basics | Fine-tune on classification | 📋 |
+| 11-lora-from-scratch | Implement LoRA | 📋 |
+| 12-kv-cache-demo | KV caching speedup | 📋 |
 
 ## Folder Structure
 
