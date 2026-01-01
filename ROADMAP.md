@@ -6,10 +6,10 @@ This document outlines the implementation phases and future additions for the ma
 
 | Phase | Focus | Documents | Status |
 |-------|-------|-----------|--------|
-| 1 | Foundation (Core Path) | 11 docs, 5 notebooks | Planned |
-| 2 | Depth | 9 docs, 4 notebooks | Planned |
-| 3 | Modern LLMs | 6 docs, 3 notebooks | Planned |
-| 4 | Polish | 3 docs, cross-refs | Planned |
+| 1 | Foundation (Core Path) | 11 docs, 5 notebooks | Complete |
+| 2 | Depth | 9 docs, 4 notebooks | Complete |
+| 3 | Modern LLMs | 6 docs, 3 notebooks | Complete |
+| 4 | Polish | 3 docs, cross-refs | Complete |
 
 ---
 
@@ -439,36 +439,36 @@ Review all documents and ensure:
 
 | Document | Phase | Status | Dependencies Met |
 |----------|-------|--------|------------------|
-| linear-algebra.md | 1 | Not started | Yes |
-| calculus.md | 1 | Not started | Yes |
-| probability.md | 1 | Not started | Yes |
-| perceptron.md | 1 | Not started | Needs linear-algebra |
-| multilayer-networks.md | 1 | Not started | Needs perceptron |
-| backpropagation.md | 1 | Not started | Needs calculus, multilayer |
-| activation-functions.md | 1 | Not started | Needs perceptron |
-| attention.md | 1 | Not started | Needs linear-algebra, probability |
-| self-attention.md | 1 | Not started | Needs attention |
-| transformer-architecture.md | 1 | Not started | Needs self-attention |
-| gpt.md | 1 | Not started | Needs transformer-architecture |
-| optimization.md | 2 | Not started | Needs calculus |
-| information-theory.md | 2 | Not started | Needs probability |
-| regularization.md | 2 | Not started | Needs multilayer |
-| loss-functions.md | 2 | Not started | Needs probability |
-| optimizers.md | 2 | Not started | Needs optimization |
-| rnns.md | 2 | Not started | Needs backprop |
-| lstms.md | 2 | Not started | Needs rnns |
-| sequence-to-sequence.md | 2 | Not started | Needs lstms |
-| multi-head-attention.md | 2 | Not started | Needs attention |
-| bert.md | 2 | Not started | Needs transformer-architecture |
-| pretraining.md | 3 | Not started | Needs gpt |
-| fine-tuning.md | 3 | Not started | Needs pretraining |
-| rlhf.md | 3 | Not started | Needs fine-tuning |
-| instruction-tuning.md | 3 | Not started | Needs fine-tuning |
-| efficient-adaptation.md | 3 | Not started | Needs fine-tuning |
-| inference.md | 3 | Not started | Needs gpt |
-| cnns.md | 4 | Not started | Needs backprop |
-| batching.md | 4 | Not started | Needs optimizers |
-| distributed-training.md | 4 | Not started | Needs batching |
+| linear-algebra.md | 1 | ✅ Complete | Yes |
+| calculus.md | 1 | ✅ Complete | Yes |
+| probability.md | 1 | ✅ Complete | Yes |
+| perceptron.md | 1 | ✅ Complete | Yes |
+| multilayer-networks.md | 1 | ✅ Complete | Yes |
+| backpropagation.md | 1 | ✅ Complete | Yes |
+| activation-functions.md | 1 | ✅ Complete | Yes |
+| attention.md | 1 | ✅ Complete | Yes |
+| self-attention.md | 1 | ✅ Complete | Yes |
+| transformer-architecture.md | 1 | ✅ Complete | Yes |
+| gpt.md | 1 | ✅ Complete | Yes |
+| optimization.md | 2 | ✅ Complete | Yes |
+| information-theory.md | 2 | ✅ Complete | Yes |
+| regularization.md | 2 | ✅ Complete | Yes |
+| loss-functions.md | 2 | ✅ Complete | Yes |
+| optimizers.md | 2 | ✅ Complete | Yes |
+| rnns.md | 2 | ✅ Complete | Yes |
+| lstms.md | 2 | ✅ Complete | Yes |
+| sequence-to-sequence.md | 2 | ✅ Complete | Yes |
+| multi-head-attention.md | 2 | ✅ Complete | Yes |
+| bert.md | 2 | ✅ Complete | Yes |
+| pretraining.md | 3 | ✅ Complete | Yes |
+| fine-tuning.md | 3 | ✅ Complete | Yes |
+| rlhf.md | 3 | ✅ Complete | Yes |
+| instruction-tuning.md | 3 | ✅ Complete | Yes |
+| efficient-adaptation.md | 3 | ✅ Complete | Yes |
+| inference.md | 3 | ✅ Complete | Yes |
+| cnns.md | 4 | ✅ Complete | Yes |
+| batching.md | 4 | ✅ Complete | Yes |
+| distributed-training.md | 4 | ✅ Complete | Yes |
 
 ---
 
